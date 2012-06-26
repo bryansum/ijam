@@ -10,7 +10,7 @@ iJam is a collaborative synthesizer for the iPhone, allowing for ad-hoc musical 
 To begin, a player can either create a new session or join an existing one. Using Apple Bonjour service, it's straightforward to determine who's located nearby. Sessions can be configured to be Wifi-based or Bluetooth-based, with both using Apple's Bonjour service to broadcast their presence.
 
 <figure>
-<img src="/images/ij-main.png" alt="Figure 1: iJam main application screen" />
+<img src="bsumm.net/images/ij-main.png" alt="Figure 1: iJam main application screen" />
 <figcaption>Figure 1: iJam main application screen</figcaption>
 </figure>
 
@@ -21,7 +21,7 @@ iJam can currently be used in two different "modes": *sequenced* or *free-form*.
 Currently iJam requires a server with Ross Bencina's [oscgroups](http://www.audiomulch.com/~rossb/code/oscgroups/) server software to be running on a local machine, but this will be integrated into the host iPhone in the future (this allows for completely serverless session creation). Once connected, clients use UDP multicasting to send [OSC](http://opensoundcontrol.org/) messages directly to other session participants.
 
 <figure>
-<img src="/images/ij-drums.png" alt="Figure 2: iJam simplistic 'drumelectro' interface. Drums are movable. Note the timeline above." />
+<img src="bsumm.net/images/ij-drums.png" alt="Figure 2: iJam simplistic 'drumelectro' interface. Drums are movable. Note the timeline above." />
 <figcaption>Figure 2: iJam 'drumelectro' interface. Drums are movable. Note the timeline above.</figcaption>
 </figure>
 
