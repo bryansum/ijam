@@ -1,0 +1,7 @@
+TODO:
+
+    - stress test server, it crashed once, not sure why.
+
+    - add support for multiple local client ports to OscGroupsClient so that the client forwards messages on to multiple local apps. (eg so a chat app can run in paralell)
+
+    - write a chat client application.

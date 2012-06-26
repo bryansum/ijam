@@ -1,0 +1,24 @@
+#N canvas 849 393 696 321 10;
+#X obj 213 53 netreceive 3001;
+#X obj 91 124 print msg;
+#X obj 237 194 send;
+#X obj 98 210 r #test;
+#X obj 96 240 print t;
+#X obj 273 159 symbol;
+#X obj 232 91 list split 1;
+#X obj 351 118 print err;
+#X text 238 211 This get a message in the form "$receiver $msg" \,
+and sends it to the specified receiver.;
+#X obj 221 159 list;
+#X obj 213 125 t b b;
+#X connect 0 0 1 0;
+#X connect 0 0 6 0;
+#X connect 3 0 4 0;
+#X connect 5 0 2 1;
+#X connect 6 0 5 1;
+#X connect 6 0 10 0;
+#X connect 6 1 9 1;
+#X connect 6 2 7 0;
+#X connect 9 0 2 0;
+#X connect 10 0 9 0;
+#X connect 10 1 5 0;

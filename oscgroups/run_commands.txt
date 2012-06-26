@@ -1,0 +1,2 @@
+./OscGroupClient `hostname` 1234 22243 22244 22245 ian ianspassword testgroup testpass
+./OscGroupClient `hostname` 1234 62243 62244 62245 bryans bryanspassword testgroup testpass

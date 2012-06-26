@@ -1,0 +1,48 @@
+#N canvas 296 92 871 354 10;
+#X obj 84 123 s \$0-play;
+#X obj 262 126 s \$0-volume;
+#X obj 85 25 r i-rhodeybass;
+#X obj 197 62 print rhodeybass;
+#X text 349 13 iJam bass instrument. This is really using the Rhodes
+patch but with the tone set to almost nothing. It actually sounds pretty
+convincing.;
+#X obj 506 62 loadbang;
+#X obj 460 216 float 0.5;
+#X msg 461 239 \$1 300;
+#X obj 459 189 t b f;
+#X obj 461 260 line~;
+#X obj 435 157 r \$0-volume;
+#X floatatom 527 241 5 0 0 0 - - -;
+#X obj 311 334 ij-dac;
+#X obj 310 300 *~;
+#X obj 38 193 r \$0-play;
+#X obj 84 102 routeOSC /play /settings /volume;
+#X obj 161 126 s \$0-settings;
+#X obj 158 191 r \$0-settings;
+#X obj 38 254 s_rhodey ijam;
+#X msg 53 215 50 500;
+#X obj 478 68 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 506 88 symbol \$0-;
+#X msg 506 112 \; \$1volume 0.5 \; \$1settings tone 0 \;;
+#X connect 2 0 3 0;
+#X connect 2 0 15 0;
+#X connect 5 0 21 0;
+#X connect 6 0 7 0;
+#X connect 6 0 11 0;
+#X connect 7 0 9 0;
+#X connect 8 0 6 0;
+#X connect 8 1 6 1;
+#X connect 9 0 13 1;
+#X connect 10 0 8 0;
+#X connect 13 0 12 0;
+#X connect 13 0 12 1;
+#X connect 14 0 18 0;
+#X connect 15 0 0 0;
+#X connect 15 1 16 0;
+#X connect 15 2 1 0;
+#X connect 17 0 18 1;
+#X connect 18 0 13 0;
+#X connect 19 0 18 0;
+#X connect 20 0 21 0;
+#X connect 21 0 22 0;

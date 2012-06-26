@@ -1,0 +1,55 @@
+When implementing NAT traversal we need to consider the following:
+( all quotes taken from [1] )
+
+- NATs require some kind of periodic message to keep their port mappings
+    current "some NATs have timeouts as short as 20 seconds"
+
+    "Unfortunately, many NATs associate UDP idle timers with individual UDP
+    sessions defined by a particular pair of endpoints, so sending keep-alives
+    on one session will not keep other sessions active even if all the
+    sessions originate from the same private endpoint. Instead of sending
+    keep-alives on many different P2P sessions, applications can avoid
+    excessive keep-alive traffic by detecting when a UDP session no longer
+    works, and re-running the original hole punching procedure again ``on demand.''
+        
+- if UDP traffic is blocked by a firewall we might want to tunnel via TCP to
+    a machine on the open internet. in this case we need to perform STUN protocol
+    properly to analyze which machines are on the open internet (this info could
+    be sent to peers with the status messages).
+
+- might be better to transmit hashes of passwords rather than the passwords
+    themselves to keep users who enter semi-important passwords from
+    accidentally transmitting them as plain text.
+
+- the udp port used to punch in a hole to communicate with other users
+    could be selected dynamically rather than being fixed by the user
+    "Finally, NAT implementations exist that consistently translate the
+    client's private endpoint as long as only one client behind the NAT
+    is using a particular private port number, but switch to symmetric
+    NAT or even worse behaviors if two or more clients with different IP
+    addresses on the private network try to communicate through the NAT
+    from the same private port number"
+    which means we should at least offer the option of clients manually
+    setting their outbound ports to different values to avoid collissions
+    behind the same NAT which exhibits the above behavior.
+
+
+- skype tries to connect via port80 and https ports if it can't make a
+    connection in other ways.
+        
+--
+    "A few poorly behaved NATs are known to scan the body of UDP datagrams
+    for 4-byte fields that look like IP addresses, and translate them as
+    they would the IP address fields in the IP header. To be robust against
+    such behavior, applications may wish to obfuscate IP addresses in
+    messages bodies slightly, for example by transmitting the one's
+    complement of the IP address instead of the IP address itself. Of
+    course, if the application is encrypting its messages, then this
+    behavior is not likely to be a problem."
+
+- because sending requests to ports behind a nat can send the wrong request
+    to the wrong machine, we need to make sure to handle this robustly
+    in clients
+
+[1] Bryan Ford, Pyda Srisuresh, Dan Kegel, "Peer-to-Peer Communication Across
+    Network Address Translators", http://www.brynosaurus.com/pub/net/p2pnat/

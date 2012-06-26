@@ -1,0 +1,51 @@
+Some thoughts about extending the client:
+
+
+    - could put the group and hash of (grouppassword+username+localipaddress)
+        in the pings so that clients can connect together without a server
+        (investigate HMAC)
+
+    - should multicast pings (perhaps at a slower rate) to support serverless
+        connections. use at least two fixed ports for transmitting so that
+        the listener can try another port to bind to if the first
+        bind fails.
+
+    - shouldn't really use a fixed port for the connection to the server, should
+        even try multiple random ports if the first one doesn't succed to talk
+        to the server after N seconds
+
+    - implement user timeouts (remove peer from peer list if inactive for more
+        than X seconds.
+
+
+    - server shouldn't crash if bad byte order messages are sent
+
+
+    - could add different trace levels to the client and server. one trace level
+    should display all incoming and outgoing messages
+
+    - another trace level should simply say
+
+        for clients:
+            steve has joined #simulus (on server 192.234.22.2:123)
+            steve has left #simulus (server timeout)
+            link with steve established (using ping address)
+            link with steve established (using public address)
+            link with steve established (using private address)
+            link with steve timed out (20 seconds)
+            #simulus members are [steve, tim, ross] with active links to [tim, steve]
+
+
+    - when the multicast method is used we should consider also propagating
+    one (or more) server addresses between clients on the local subnet
+    so ideally only one client needs to know the server address.
+
+    - NAT type could be detected so long as one member is outside NAT (perhaps add
+    allow_client_info and allow_relay) flags for each client
+
+----
+
+    Security is a problem with the present system, because to accomodate symmetric NATs (which use different ports for each peer) we can't rely on the server to provide authoritative information about who each user is. Further more even if they did there would be nothing to stop peers from spoofing IP addresses. So the real question is "how secure do we need to be" -- ideally i would like it to be difficult for the network to become corrupted -- given how easy it is to send OSC packets around the network (by malicious peers) i'm not sure how to handle it without encrypting the OSC traffic itself.
+
+
+
